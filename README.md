@@ -1,5 +1,5 @@
 # football_parser
-get the football team list
+get the football team list from transfermarkt.com
 
 
 
