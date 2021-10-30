@@ -28,8 +28,8 @@ for player in players:
     if num[0].isdigit():
         name = player.find('a', class_='spielprofil_tooltip')
         first_name = name.text.split()[:-1]
-        last_name = name.text.split()[-1])
-        role = player.find('td', class_='zentriert rueckennummer bg_Torwart')le)
+        last_name = name.text.split()[-1]
+        role = player.find('td', class_='zentriert rueckennummer bg_Torwart')
         if role != None:
             print('{},{},{} (GK)'.format(num, ' '.join(first_name).upper(), last_name.upper()))
         else:
