@@ -25,8 +25,9 @@ print()
 for player in players:
     number = player.find('div', class_='rn_nummer')
     num = number.text
+    print()
     if num[0].isdigit():
-        name = player.find('a', class_='spielprofil_tooltip')
+        name = player.find('td', class_='hide')
         first_name = name.text.split()[:-1]
         last_name = name.text.split()[-1]
         role = player.find('td', class_='zentriert rueckennummer bg_Torwart')
