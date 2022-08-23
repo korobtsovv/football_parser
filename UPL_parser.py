@@ -5,30 +5,44 @@
 import requests
 from bs4 import BeautifulSoup
 
-helper = """veres, dnipro1, lviv, olexandria,
-vorskla, zorya, mariupol, rukh, 
-desna, inhulets, metalist1925, chornomorets,
-dynamo, kolos, minaj, shakhtar"""
+helper = """
+1) veres
+2) dnipro1
+3) lviv
+4) olexandria
+5) vorskla
+6) zorya
+7) mariupol
+8) rukh
+9) desna
+10) inhulets
+11) metalist1925
+12) chornomorets
+13) dynamo
+14) kolos
+15) minaj
+16) shakhtar
+"""
 
 print(helper)
 print()
 
-teams = {'veres': '1811',
-         'dnipro1': '1807',
-         'lviv': '3',
-         'olexandria': '19',
-         'vorskla': '5',
-         'zorya': '11',
-         'mariupol': '1803',
-         'rukh': '1809',
-         'desna': '6',
-         'inhulets': '1417',
-         'metalist1925': '1810',
-         'chornomorets': '27',
-         'dynamo': '7',
-         'kolos': '1806',
-         'minaj': '1808',
-         'shakhtar': '28'}
+teams = {'1': '1811',
+         '2': '1807',
+         '3': '3',
+         '4': '19',
+         '5': '5',
+         '6': '11',
+         '7': '1803',
+         '8': '1809',
+         '9': '6',
+         '10': '1417',
+         '11': '1810',
+         '12': '27',
+         '13': '7',
+         '14': '1806',
+         '15': '1808',
+         '16': '28'}
 
 team = input('SELECT TEAM: ')
 if team in teams.keys():
@@ -45,15 +59,13 @@ players = soup.find_all('div', class_='info')
 print()
 
 for player in players:
+    # print(player)
     number = player.find('div', class_='number')
     if number:
         first_name = player.find('div', class_=False)
         last_name = player.find('span', class_='last-name')
         role = player.find('div', class_='role')
-        if (role != None and role.text == 'Goalkeeper'):
-            print('{},{},{} (GK)'.format(number.text, first_name.text.split()[0].upper(), last_name.text.upper()))
-        else:
-            print('{},{},{}'.format(number.text, first_name.text.split()[0].upper(), last_name.text.upper()))
+        print('{},{},{},{}'.format(number.text, first_name.text.split()[0].upper(), last_name.text.upper(), role.text.upper()))
 
 print()
 input("Press ENTER to close program")
