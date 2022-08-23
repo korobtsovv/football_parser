@@ -12,9 +12,9 @@ helper = """
 4) olexandria
 5) vorskla
 6) zorya
-7) mariupol
+7) kryvbas
 8) rukh
-9) desna
+9) metalist
 10) inhulets
 11) metalist1925
 12) chornomorets
@@ -33,9 +33,9 @@ teams = {'1': '1811',
          '4': '19',
          '5': '5',
          '6': '11',
-         '7': '1803',
+         '7': '1478',
          '8': '1809',
-         '9': '6',
+         '9': '1812',
          '10': '1417',
          '11': '1810',
          '12': '27',
