@@ -46,7 +46,7 @@ teams = {'1': '1811',
 
 team = input('SELECT TEAM: ')
 if team in teams.keys():
-    url = 'https://upl.ua/en/clubs/view/' + teams[team] + '/31?status=1'
+    url = 'https://upl.ua/en/clubs/view/' + teams[team] + '/32?status=0'
 else:
     print('Wrong team code!')
 
