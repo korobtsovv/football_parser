@@ -17,16 +17,19 @@ headers = {
 url = input('ENTER URL: ')
 response = requests.get(url, headers=headers)
 soup = BeautifulSoup(response.text, 'lxml')
+# print(soup)
 
 regex = re.compile('^(odd|even)$')
 players = soup.find_all('tr', {"class": regex})
 print()
 
 for player in players:
+    # print(player)
     number = player.find('div', class_='rn_nummer')
     num = number.text
     if num[0].isdigit():
-        name = player.find('td', class_='hide')
+        name = player.find('td', class_='hauptlink')
+        # print(name)
         first_name = name.text.split()[:-1]
         last_name = name.text.split()[-1]
         role = player.find('td', class_='zentriert rueckennummer bg_Torwart')

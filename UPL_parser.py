@@ -6,22 +6,27 @@ import requests
 from bs4 import BeautifulSoup
 
 helper = """
-1) veres
-2) dnipro1
-3) lviv
-4) olexandria
-5) vorskla
-6) zorya
-7) kryvbas
-8) rukh
-9) metalist
-10) inhulets
-11) metalist1925
-12) chornomorets
-13) dynamo
-14) kolos
-15) minaj
-16) shakhtar
+1 - Veres
+2 - dnipro1
+3 - lviv
+4 - olexandria
+5 - Vorskla
+6 - zorya
+7 - kryvbas
+8 - rukh
+9 - metalist
+10 - Inhulets
+11 - metalist1925
+12 - chornomorets
+13 - dynamo
+14 - kolos
+15 - minaj
+16 - shakhtar
+17 - Livyi Bereh
+18 - Polissya
+19 - Karpaty
+20 - LNZ
+21 - Obolon
 """
 
 print(helper)
@@ -42,11 +47,17 @@ teams = {'1': '1811',
          '13': '7',
          '14': '1806',
          '15': '1808',
-         '16': '28'}
+         '16': '28',
+         '17': '1847',
+         '18': '1814',
+         '19': '1864',
+         '20': '1813',
+         '21': '1565'
+         }
 
 team = input('SELECT TEAM: ')
 if team in teams.keys():
-    url = 'https://upl.ua/en/clubs/view/' + teams[team] + '/32?status=0'
+    url = 'https://upl.ua/en/clubs/view/' + teams[team] + '/34?status=0'
 else:
     print('Wrong team code!')
 
