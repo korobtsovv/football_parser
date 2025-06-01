@@ -4,79 +4,83 @@
 
 import requests
 from bs4 import BeautifulSoup
+import sys
 
-helper = """
-1 - Veres
-2 - dnipro1
-3 - lviv
-4 - olexandria
-5 - Vorskla
-6 - zorya
-7 - kryvbas
-8 - rukh
-9 - metalist
-10 - Inhulets
-11 - metalist1925
-12 - chornomorets
-13 - dynamo
-14 - kolos
-15 - minaj
-16 - shakhtar
-17 - Livyi Bereh
-18 - Polissya
-19 - Karpaty
-20 - LNZ
-21 - Obolon
-"""
-
-print(helper)
+teams = {
+        'chornomorets'  : '27',
+        'dnipro1'       : '1807',
+        'dynamo'        : '7',
+        'inhulets'      : '1417',
+        'karpaty'       : '1864',
+        'kolos'         : '1806',
+        'kryvbas'       : '1478',
+        'livyi bereh'   : '1847',
+        'lnz'           : '1813',
+        'lviv'          : '3',
+        'metalist'      : '1812',
+        'metalist1925'  : '1810',
+        'minaj'         : '1808',
+        'obolon'        : '1565',
+        'olexandria'    : '19',
+        'polissya'      : '1814',
+        'rukh'          : '1809',
+        'shakhtar'      : '28',
+        'veres'         : '1811',
+        'vorskla'       : '5',
+        'zorya'         : '11'
+        }
+for i in teams:
+    print(i)
 print()
-
-teams = {'1': '1811',
-         '2': '1807',
-         '3': '3',
-         '4': '19',
-         '5': '5',
-         '6': '11',
-         '7': '1478',
-         '8': '1809',
-         '9': '1812',
-         '10': '1417',
-         '11': '1810',
-         '12': '27',
-         '13': '7',
-         '14': '1806',
-         '15': '1808',
-         '16': '28',
-         '17': '1847',
-         '18': '1814',
-         '19': '1864',
-         '20': '1813',
-         '21': '1565'
-         }
-
-team = input('SELECT TEAM: ')
-if team in teams.keys():
-    url = 'https://upl.ua/en/clubs/view/' + teams[team] + '/34?status=0'
-else:
-    print('Wrong team code!')
-
-response = requests.get(url)
-soup = BeautifulSoup(response.text, 'lxml')
-# print(soup)
-
-players = soup.find_all('div', class_='info')
-# print(players)
-print()
-
-for player in players:
-    # print(player)
-    number = player.find('div', class_='number')
-    if number:
-        first_name = player.find('div', class_=False)
-        last_name = player.find('span', class_='last-name')
-        role = player.find('div', class_='role')
-        print('{},{},{},{}'.format(number.text, first_name.text.split()[0].upper(), last_name.text.upper(), role.text.upper()))
-
+try:
+    while True:
+        team = input('Enter team name: ')
+        if team in teams.keys():
+            url = 'https://upl.ua/en/clubs/view/' + teams[team] + '/34?status=1'
+            break
+        else:
+            print('Please, enter correct team name!')
+except KeyboardInterrupt:
+    print(' Exit')
+    sys.exit(1)
+try:
+    headers = {
+       'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'
+    }
+    response = requests.get(url, headers=headers)
+    soup = BeautifulSoup(response.text, 'lxml')
+    players = soup.find_all('div', class_='info')
+    for player in players:
+        link = player.find('a', href=True)
+        url = 'https://upl.ua' + link['href']
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, 'lxml').find('div', class_='info')
+        numbers = soup.find_all('div', class_="col-sm-6")
+        for num in numbers:
+            index = numbers.index(num)
+            if num.text == 'Number':
+                number = numbers[index + 1]
+        if number.text == '-':
+            continue
+        else:
+                number = number.text
+        pseudonym = soup.find('div', class_='pseudonym')
+        if pseudonym.text.strip() == '':
+            fn = soup.find('div', class_='name').text.split()
+            fn = fn[0].upper()
+            ln = soup.find('div', class_='name').text.split()
+            ln = ln[1].upper()
+        else:
+            fn = ''
+            ln = pseudonym.text.strip().upper()
+        role = soup.find('div', class_='amplua').text.upper()
+        if role != 'GOALKEEPER':
+            print('{},{},{},{}'.format(number, fn, ln, role))
+        else:
+            print('{},{},{} (GK),{}'.format(number, fn, ln, role))
+        # break
+except KeyboardInterrupt:
+    print(' Exit')
+    sys.exit(1)
 print()
 input("Press ENTER to close program")

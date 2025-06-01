@@ -11,11 +11,11 @@ Find football team and insert link from browser here...
 
 print(info)
 
-headers = {
-   'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'
+header = {
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'
 }
 url = input('ENTER URL: ')
-response = requests.get(url, headers=headers)
+response = requests.get(url, headers=header)
 soup = BeautifulSoup(response.text, 'lxml')
 # print(soup)
 
