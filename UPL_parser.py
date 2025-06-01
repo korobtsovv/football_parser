@@ -69,9 +69,9 @@ try:
         pseudonym = soup.find('div', class_='pseudonym')
         if pseudonym.text.strip() == '':
             fn = soup.find('div', class_='name').text.split()
-            fn = fn[0].upper()
+            fn = fn[1].upper()
             ln = soup.find('div', class_='name').text.split()
-            ln = ln[1].upper()
+            ln = ln[0].upper()
         else:
             fn = ''
             ln = pseudonym.text.strip().upper()
