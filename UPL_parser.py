@@ -10,11 +10,12 @@ teams = {
         # 'chornomorets'  : '27',
         # 'dnipro1'       : '1807',
         'dynamo'        : '7',
-        # 'epicentr'      : '',
+        'epicentr'      : '',
         # 'inhulets'      : '1417',
         'karpaty'       : '1864',
         'kolos'         : '1806',
         'kryvbas'       : '1478',
+        'kudrivka'       : '1854',
         # 'livyi bereh'   : '1847',
         'lnz'           : '1813',
         # 'lviv'          : '3',
@@ -24,11 +25,11 @@ teams = {
         'obolon'        : '1565',
         'olexandria'    : '19',
         'polissya'      : '1814',
-        # 'poltava'       : '',
+        'poltava'       : '',
         'rukh'          : '1809',
         'shakhtar'      : '28',
         'veres'         : '1811',
-        'vorskla'       : '5',
+        # 'vorskla'       : '5',
         'zorya'         : '11'
         }
 for i in teams:
